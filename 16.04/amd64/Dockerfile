@@ -1,5 +1,9 @@
 FROM huggla/busybox as busybox
-COPY rootfs.tar etc-apt.tar /
+COPY rootfs.tar etc-apt.tar /tmp/
+RUN cd /tmp \
+ && tar -xvp rootfs.tar \
+ && tar -xvp etc-apt.tar \
+ && rm rootfs.tar etc-apt.tar
 
 FROM scratch
 LABEL org.label-schema.vendor="Blitznote" \
@@ -16,7 +20,6 @@ LABEL org.label-schema.vendor="Blitznote" \
       family="haswell silvermont excavator zx-c" \
       minfamily="ivybridge silvermont piledriver zx-c"
 
-ADD rootfs.tar /
-COPY blitznote.gpg /etc/apt/trusted.gpg.d/
+COPY --from=busybox /tmp /
 CMD ["/bin/bash"]
 SHELL ["/bin/bash", "-c"]
