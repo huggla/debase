@@ -1,4 +1,4 @@
-FROM huggla/busybox as busybox
+FROM huggla/busybox:20190716 as busybox
 COPY rootfs.tar etc-apt.tar /tmp/
 RUN cd /tmp \
  && tar -xvp rootfs.tar \
