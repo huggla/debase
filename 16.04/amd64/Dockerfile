@@ -14,5 +14,6 @@ LABEL org.label-schema.vendor="Blitznote" \
       minfamily="ivybridge silvermont piledriver zx-c"
 
 ADD rootfs.tar /
+COPY blitznote.gpg /etc/apt/trusted.gpg.d/
 CMD ["/bin/bash"]
 SHELL ["/bin/bash", "-c"]
