@@ -1,6 +1,8 @@
 FROM huggla/busybox:20190716 as busybox
-COPY rootfs.tar etc-apt.tar /tmp/
-RUN cd /tmp \
+COPY ./rootfs.tar ./etc-apt.tar /tmp/
+RUN exec 2>&1 \
+ && set -x \
+ && cd /tmp \
  && tar -xvp rootfs.tar \
  && tar -xvp etc-apt.tar \
  && rm rootfs.tar etc-apt.tar
