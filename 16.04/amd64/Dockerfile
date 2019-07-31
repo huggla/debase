@@ -3,8 +3,8 @@ COPY ./rootfs.tar ./etc-apt.tar /tmp/
 RUN exec 2>&1 \
  && set -x \
  && cd /tmp \
- && tar -xvp rootfs.tar \
- && tar -xvp etc-apt.tar \
+ && tar -xvpf rootfs.tar \
+ && tar -xvpf etc-apt.tar \
  && rm rootfs.tar etc-apt.tar
 
 FROM scratch
