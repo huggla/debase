@@ -1,3 +1,6 @@
+FROM huggla/busybox as busybox
+COPY rootfs.tar etc-apt.tar /
+
 FROM scratch
 LABEL org.label-schema.vendor="Blitznote" \
       org.label-schema.build-date="2017-12-01T00:00:00+00:00" \
