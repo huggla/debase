@@ -26,6 +26,6 @@ LABEL org.label-schema.vendor="Blitznote" \
       family="haswell silvermont excavator zx-c" \
       minfamily="ivybridge silvermont piledriver zx-c"
 
-COPY --from=busybox /tmp /
+COPY --from=alpine /tmp /
 CMD ["/bin/bash"]
 SHELL ["/bin/bash", "-c"]
