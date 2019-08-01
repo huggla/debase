@@ -1,11 +1,11 @@
 FROM huggla/busybox:20190716 as busybox
-COPY ./rootfs.tar ./etc-apt.tar /tmp/
+ARG TARFILES="rootfs.tar"
+COPY ${TARFILES} /tmp/
 RUN exec 2>&1 \
  && set -x \
  && cd /tmp \
- && tar -xvpf rootfs.tar \
- && tar -xvpf etc-apt.tar \
- && rm rootfs.tar etc-apt.tar
+ && for tarfile in ${TARFILES}; do tar x -pf "$tarfile"; done \
+ && rm -f ${TARFILES}
 
 FROM scratch
 LABEL org.label-schema.vendor="Blitznote" \
