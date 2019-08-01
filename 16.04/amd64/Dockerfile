@@ -5,7 +5,10 @@ RUN exec 2>&1 \
  && set -x \
  && cd /tmp \
  && for tarfile in ${TARFILES}; do tar x -pf "$tarfile"; done \
- && rm -f ${TARFILES}
+ && rm -f ${TARFILES} \
+ && curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xa1715d88e1df1f24" | gpg --import \
+ && gpg --no-default-keyring --export --armor a1715d88e1df1f24 > /tmp/etc/apt/trusted.gpg.d/git.gpg \
+ && echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main" >> /tmp/etc/apt/sources.list
 
 FROM scratch
 LABEL org.label-schema.vendor="Blitznote" \
