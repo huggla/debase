@@ -1,5 +1,5 @@
 FROM huggla/busybox:20190716 as busybox
-ARG TARFILES="rootfs.tar"
+ARG TARFILES="rootfs.tar etc-apk.tar"
 COPY ${TARFILES} /tmp/
 RUN exec 2>&1 \
  && set -x \
