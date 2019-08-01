@@ -1,6 +1,6 @@
 FROM huggla/busybox:20190716 as busybox
 ARG TARFILES="rootfs.tar etc-apt.tar"
-COPY ./tarfiles/* /tmp/
+COPY ./*.tar /tmp/
 RUN exec 2>&1 \
  && set -x \
  && cd /tmp \
